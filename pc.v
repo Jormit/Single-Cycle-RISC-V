@@ -6,10 +6,8 @@ module pc (
 );
 
 	always @(posedge clock) begin
-		if (write)
-			pc <= data;
-		else
-			pc <= pc + 4;
+		if (write) pc <= data;
+		else       pc <= pc + 4;
 	end
 
 endmodule
