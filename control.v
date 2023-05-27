@@ -1,1 +1,5 @@
+module control (
+);
 
+
+endmodule

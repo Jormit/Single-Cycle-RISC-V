@@ -1,7 +1,7 @@
 `include "defines.v"
 
 module alu (
-	input  [4:0]  operation,
+	input  [3:0]  operation,
 	input signed  [31:0] operand_1,
 	input signed  [31:0] operand_2,
 	output reg [31:0] result
