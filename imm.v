@@ -1,6 +1,8 @@
+`include "defines.v"
+
 module imm (
-	input  [31:0] inst,
-	output [31:0] imm
+	input      [31:0] inst,
+	output reg [31:0] imm
 );
 
 	always @(*) begin
@@ -23,7 +25,7 @@ module imm (
 			// J-Type
 			`OPCODE_JAL:    imm = { {12{inst[31]}}, inst[19:12], inst[20], inst[30:21], 1'b0 };
 
-			default: immediate = 32'b0;			
+			default: imm = 32'b0;			
 		endcase
 	end
 

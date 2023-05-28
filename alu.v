@@ -4,8 +4,11 @@ module alu (
 	input  [3:0]  operation,
 	input signed  [31:0] operand_1,
 	input signed  [31:0] operand_2,
-	output reg [31:0] result
+	output reg [31:0] result,
+	output zero
 );
+
+	assign zero = (result == 32'b0);
 
 	always @(*) begin
 		case (operation)
