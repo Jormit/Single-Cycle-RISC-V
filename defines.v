@@ -43,4 +43,29 @@
 
 // Branch address source
 `define CTL_IMM_PC   1'b0
-`define CTL_IMM   1'b1
+`define CTL_IMM      1'b1
+
+// FUNCT3 for Arithmetic Instructions
+`define FUNCT3_ALU_ADD_SUB  3'b000
+`define FUNCT3_ALU_SL       3'b001
+`define FUNCT3_ALU_LT       3'b010
+`define FUNCT3_ALU_LTU      3'b011
+`define FUNCT3_ALU_XOR      3'b100
+`define FUNCT3_ALU_SR       3'b101
+`define FUNCT3_ALU_OR       3'b110
+`define FUNCT3_ALU_AND      3'b111
+
+// FUNCT3 for Memory Instructions
+`define FUNCT3_MEM_BYTE     3'b000
+`define FUNCT3_MEM_HALF     3'b001
+`define FUNCT3_MEM_WORD     3'b010
+`define FUNCT3_MEM_BYTE_U   3'b100
+`define FUNCT3_MEM_HALF_U   3'b101
+
+// FUNCT3 for Branches
+`define FUNCT3_BRANCH_EQ    3'b000
+`define FUNCT3_BRANCH_NE    3'b001
+`define FUNCT3_BRANCH_LT    3'b100
+`define FUNCT3_BRANCH_GE    3'b101
+`define FUNCT3_BRANCH_LTU   3'b110
+`define FUNCT3_BRANCH_GEU   3'b111
