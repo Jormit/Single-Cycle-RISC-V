@@ -1,19 +1,19 @@
-module registers (
+module reg_file (
 	input  clock,
 	input  write,
 	input  [4:0]  reg_1_sel,
 	input  [4:0]  reg_2_sel,	
 	input  [4:0]  write_reg,
 	input  [31:0] write_data,
-	output [31:0] reg_1,
-	output [31:0] reg_2
+	output [31:0] reg_1_data,
+	output [31:0] reg_2_data
 );
 	reg [31:0] registers [31:0];
 
 	initial registers [0] = 32'b0;
 	
-	assign reg_1 = registers [reg_1_sel];
-	assign reg_2 = registers [reg_2_sel];
+	assign reg_1_data = registers [reg_1_sel];
+	assign reg_2_data = registers [reg_2_sel];
 
 	always @(posedge clock) begin
 		if (write && write_reg != 5'b0) begin

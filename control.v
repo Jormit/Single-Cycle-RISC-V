@@ -2,9 +2,9 @@
 
 module control (
 	input [6:0] opcode,
-	output reg mem_read,
-	output reg mem_write,
-	output reg mem_to_reg,
+	output reg bus_read,
+	output reg bus_write,
+	output reg bus_to_reg,
 	output reg reg_write,
 	output reg alu_src_1,
 	output reg alu_src_2,
@@ -17,9 +17,9 @@ module control (
 		case (opcode)
 			`OPCODE_LOAD:
 			begin
-				mem_read   <= 1'b1;
-				mem_write  <= 1'b0;
-				mem_to_reg <= 1'b1;
+				bus_read   <= 1'b1;
+				bus_write  <= 1'b0;
+				bus_to_reg <= 1'b1;
 				reg_write  <= 1'b1;
 				alu_src_1  <= `CTL_ALU_1_RS1;
 				alu_src_2  <= `CTL_ALU_2_IMM;
@@ -30,9 +30,9 @@ module control (
 			end
 			`OPCODE_OP_IMM:
 			begin
-				mem_read   <= 1'b0;
-				mem_write  <= 1'b0;
-				mem_to_reg <= 1'b0;
+				bus_read   <= 1'b0;
+				bus_write  <= 1'b0;
+				bus_to_reg <= 1'b0;
 				reg_write  <= 1'b1;
 				alu_src_1  <= `CTL_ALU_1_RS1;
 				alu_src_2  <= `CTL_ALU_2_IMM;
@@ -43,9 +43,9 @@ module control (
 			end
 			`OPCODE_AUIPC:
 			begin
-				mem_read   <= 1'b0;
-				mem_write  <= 1'b0;
-				mem_to_reg <= 1'b0;
+				bus_read   <= 1'b0;
+				bus_write  <= 1'b0;
+				bus_to_reg <= 1'b0;
 				reg_write  <= 1'b1;
 				alu_src_1  <= `CTL_ALU_1_PC;
 				alu_src_2  <= `CTL_ALU_2_IMM;
@@ -56,9 +56,9 @@ module control (
 			end				
 			`OPCODE_STORE:
 			begin
-				mem_read   <= 1'b0;
-				mem_write  <= 1'b1;
-				mem_to_reg <= 1'b0;
+				bus_read   <= 1'b0;
+				bus_write  <= 1'b1;
+				bus_to_reg <= 1'b0;
 				reg_write  <= 1'b0;
 				alu_src_1  <= `CTL_ALU_1_RS1;
 				alu_src_2  <= `CTL_ALU_2_IMM;
@@ -69,9 +69,9 @@ module control (
 			end
 			`OPCODE_OP:
 			begin
-				mem_read   <= 1'b0;
-				mem_write  <= 1'b0;
-				mem_to_reg <= 1'b0;
+				bus_read   <= 1'b0;
+				bus_write  <= 1'b0;
+				bus_to_reg <= 1'b0;
 				reg_write  <= 1'b1;
 				alu_src_1  <= `CTL_ALU_1_RS1;
 				alu_src_2  <= `CTL_ALU_2_RS2;
@@ -82,9 +82,9 @@ module control (
 			end
 			`OPCODE_LUI:
 			begin
-				mem_read   <= 1'b1;
-				mem_write  <= 1'b0;
-				mem_to_reg <= 1'b1;
+				bus_read   <= 1'b1;
+				bus_write  <= 1'b0;
+				bus_to_reg <= 1'b1;
 				reg_write  <= 1'b1;
 				alu_src_1  <= `CTL_ALU_1_RS1;
 				alu_src_2  <= `CTL_ALU_2_RS2;
@@ -95,9 +95,9 @@ module control (
 			end
 			`OPCODE_BRANCH:
 			begin
-				mem_read   <= 1'b0;
-				mem_write  <= 1'b0;
-				mem_to_reg <= 1'b0;
+				bus_read   <= 1'b0;
+				bus_write  <= 1'b0;
+				bus_to_reg <= 1'b0;
 				reg_write  <= 1'b0;
 				alu_src_1  <= `CTL_ALU_1_RS1;
 				alu_src_2  <= `CTL_ALU_2_RS2;
@@ -108,9 +108,9 @@ module control (
 			end
 			`OPCODE_JALR:
 			begin
-				mem_read   <= 1'b0;
-				mem_write  <= 1'b0;
-				mem_to_reg <= 1'b0;
+				bus_read   <= 1'b0;
+				bus_write  <= 1'b0;
+				bus_to_reg <= 1'b0;
 				reg_write  <= 1'b1;
 				alu_src_1  <= `CTL_ALU_1_RS1;
 				alu_src_2  <= `CTL_ALU_2_IMM;
@@ -121,9 +121,9 @@ module control (
 			end
 			`OPCODE_JAL:
 			begin
-				mem_read   <= 1'b0;
-				mem_write  <= 1'b0;
-				mem_to_reg <= 1'b0;
+				bus_read   <= 1'b0;
+				bus_write  <= 1'b0;
+				bus_to_reg <= 1'b0;
 				reg_write  <= 1'b1;
 				alu_src_1  <= `CTL_ALU_1_PC;
 				alu_src_2  <= `CTL_ALU_2_IMM;

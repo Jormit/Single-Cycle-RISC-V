@@ -1,6 +1,6 @@
 `include "defines.v"
 
-module imm (
+module imm_gen (
 	input      [31:0] inst,
 	output reg [31:0] imm
 );

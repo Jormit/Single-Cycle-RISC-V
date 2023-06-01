@@ -2,3 +2,6 @@ work/
 *.bak
 *.mpf
 *.mti
+*.xml
+*.vsdx
+*.prefs
