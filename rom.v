@@ -9,7 +9,7 @@ module rom
 	assign data = address < SIZE ? mem[address] : 32'b0;
 
 	initial begin
-  		$readmemh("inst.txt", mem, 0, 255);
+  		$readmemh("inst", mem, 0, SIZE - 1);
 	end
 
 endmodule

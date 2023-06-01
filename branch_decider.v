@@ -5,7 +5,7 @@ module branch_decider (
 	input jump,
 	input [2:0] funct3,
 	input alu_zero,
-	output reg pc_source
+	output reg [1:0] pc_source
 );
 	reg take_branch;
 	always @(funct3) begin

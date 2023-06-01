@@ -12,7 +12,7 @@ module mux_4 (
 			2'b00: y = a;
 			2'b01: y = b;
 			2'b10: y = c;
-			2'b11: y = d;
+			default: y = d;
 		endcase
 	end
 endmodule

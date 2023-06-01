@@ -11,7 +11,7 @@ module riscv_core (
 	input [31:0] inst,
 	output reg [31:0] pc	
 );			
-	wire next_pc;
+	wire [31:0] next_pc;
 
 	always @(posedge reset) pc <= 0;	
 	always @(posedge clock) pc <= next_pc;
@@ -49,7 +49,7 @@ module riscv_core (
 		.reg_2_data(reg_2_data)
 	);
 
-	wire imm;
+	wire [31:0] imm;
 
 	imm_gen imm_gen_instance(
 		.inst(inst),
@@ -78,7 +78,7 @@ module riscv_core (
 		.alu_op(alu_op)
 	);
 
-	wire operation;
+	wire [3:0] operation;
 
 	alu_control alu_control_instance(
 		.alu_op(alu_op),
@@ -115,7 +115,7 @@ module riscv_core (
 		.zero(zero)
 	);
 	
-	wire pc_source;
+	wire [1:0] pc_source;
 
 	branch_decider branch_decider_instance(
 		.branch(branch),
@@ -125,6 +125,8 @@ module riscv_core (
 		.pc_source(pc_source)
 	);
 
+	wire [31:0] default_pc;
+	wire [31:0] branch_pc;
 	assign default_pc = pc + 4;
 	assign branch_pc = pc + imm;
 
@@ -137,7 +139,7 @@ module riscv_core (
 		.y(next_pc)
 	);
 
-	wire result;
+	wire [31:0] result;
 
 	mux_2 output_select (
 		.sel(out_sel),
@@ -152,5 +154,8 @@ module riscv_core (
 		.b(result),
 		.y(reg_write_data)
 	);	
+
+	assign bus_write_data = reg_2_data;
+	assign bus_address = alu_result;
 	
 endmodule

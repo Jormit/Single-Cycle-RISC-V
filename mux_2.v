@@ -7,8 +7,8 @@ module mux_2 (
 
 	always @(*) begin
 		case(sel)
-			1'b0: y = a;
-			1'b1: y = b;
+			1'b0:    y = a;
+			default: y = b;
 		endcase
 	end
 endmodule
