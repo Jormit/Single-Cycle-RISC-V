@@ -23,7 +23,7 @@ module riscv_core (
 	wire [6:0] funct7;
 	wire [6:0] opcode;
 
-	decoder decoder_instance(
+	decoder decoder (
 		.inst(inst),
 		.rs1(rs1),
 		.rs2(rs2),
@@ -38,7 +38,7 @@ module riscv_core (
 	wire [31:0] reg_write_data;
 	wire reg_write;
 
-	reg_file reg_file_instance(
+	reg_file reg_file (
 		.clock(clock),
 		.write(reg_write),
 		.reg_1_sel(rs1),
@@ -51,7 +51,7 @@ module riscv_core (
 
 	wire [31:0] imm;
 
-	imm_gen imm_gen_instance(
+	imm_gen imm_gen (
 		.inst(inst),
 		.imm(imm)
 	);
@@ -64,7 +64,7 @@ module riscv_core (
 	wire jump;
 	wire [1:0] alu_op;
 
-	control control_instance(
+	control control (
 		.opcode(opcode),
 		.bus_read(bus_read),
 		.bus_write(bus_write),
@@ -80,7 +80,7 @@ module riscv_core (
 
 	wire [3:0] operation;
 
-	alu_control alu_control_instance(
+	alu_control alu_control (
 		.alu_op(alu_op),
 		.funct3(funct3),
 		.funct7(funct7),
@@ -90,14 +90,14 @@ module riscv_core (
 	wire [31:0] operand_1;
 	wire [31:0] operand_2;
 
-	mux_2 alu_input_1 (
+	mux_2 alu_input_1_selector (
 		.sel(alu_src_1),
 		.a(reg_1_data),
 		.b(pc),
 		.y(operand_1)
 	);
 
-	mux_2 alu_input_2 (
+	mux_2 alu_input_2_selector (
 		.sel(alu_src_2),
 		.a(reg_2_data),
 		.b(imm),
@@ -107,7 +107,7 @@ module riscv_core (
 	wire [31:0] alu_result;
 	wire zero;
 
-	alu alu_instance(
+	alu alu (
 		.operation(operation),
 		.operand_1(operand_1),
 		.operand_2(operand_2),
@@ -117,7 +117,7 @@ module riscv_core (
 	
 	wire [1:0] pc_source;
 
-	branch_decider branch_decider_instance(
+	branch_decider branch_decider (
 		.branch(branch),
 		.jump(jump),
 		.funct3(funct3),
@@ -130,7 +130,7 @@ module riscv_core (
 	assign default_pc = pc + 4;
 	assign branch_pc = pc + imm;
 
-	mux_4 mux_4_instance(
+	mux_4 next_pc_selector (
 		.sel(pc_source),
 		.a(default_pc),
 		.b(branch_pc),

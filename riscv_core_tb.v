@@ -33,7 +33,7 @@ module riscv_core_tb;
     );
 
     rom #(
-        .SIZE(10)
+        .SIZE(3)
     ) rom_instance(
         .address(pc),
         .data(inst)
@@ -49,12 +49,14 @@ module riscv_core_tb;
         #1
         reset = 0;
         
-        for (i = 0; i < 10; i = i + 1) begin
+        for (i = 0; i < 3; i = i + 1) begin
             #1
             clock = 1;
             #1
             clock = 0;
         end
+
+        $stop;
     end
     
     
