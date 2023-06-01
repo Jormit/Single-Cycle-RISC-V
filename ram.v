@@ -7,7 +7,7 @@ module ram
 	output [31:0] data
 );
 	reg [31:0] mem [0 : SIZE - 1];      
-	assign data = address < SIZE ? mem[address[31:2]] : 32'b0;
+	assign data = address[31:2] < SIZE ? mem[address[31:2]] : 32'b0;
 
 	always @(posedge clock) begin
 		if (write && address[31:2] < SIZE) begin

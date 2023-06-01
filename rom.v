@@ -6,7 +6,7 @@ module rom
 );
 
 	reg [31:0] mem [0 : SIZE - 1];      
-	assign data = address < SIZE ? mem[address[31:2]] : 32'b0;
+	assign data = address[31:2] < SIZE ? mem[address[31:2]] : 32'b0;
 
 	initial begin
   		$readmemh("inst", mem, 0, SIZE - 1);

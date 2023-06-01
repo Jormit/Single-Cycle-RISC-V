@@ -150,8 +150,8 @@ module riscv_core (
 
 	mux_2 write_back_src(
 		.sel(bus_to_reg),
-		.a(bus_read_data),
-		.b(result),
+		.a(result),
+		.b(bus_read_data),
 		.y(reg_write_data)
 	);	
 

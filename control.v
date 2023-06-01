@@ -84,7 +84,7 @@ module control (
 			begin
 				bus_read   <= 1'b1;
 				bus_write  <= 1'b0;
-				bus_to_reg <= 1'b1;
+				bus_to_reg <= 1'b0;
 				reg_write  <= 1'b1;
 				alu_src_1  <= `CTL_ALU_1_RS1;
 				alu_src_2  <= `CTL_ALU_2_RS2;

@@ -33,13 +33,11 @@ module riscv_core_tb;
     );
 
     rom #(
-        .SIZE(3)
+        .SIZE(8)
     ) rom_instance(
         .address(pc),
         .data(inst)
     );
-
-    integer i;
 
     initial begin
         reset = 0;
@@ -49,7 +47,7 @@ module riscv_core_tb;
         #1
         reset = 0;
         
-        for (i = 0; i < 3; i = i + 1) begin
+        while (1) begin
             #1
             clock = 1;
             #1

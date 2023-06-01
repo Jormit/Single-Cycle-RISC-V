@@ -8,7 +8,7 @@ module branch_decider (
 	output reg [1:0] pc_source
 );
 	reg take_branch;
-	always @(funct3) begin
+	always @(funct3, alu_zero) begin
 		case (funct3)
 			`FUNCT3_BRANCH_EQ:  take_branch = !alu_zero;
 			`FUNCT3_BRANCH_NE:  take_branch = alu_zero;
