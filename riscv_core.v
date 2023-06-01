@@ -148,12 +148,21 @@ module riscv_core (
 		.y(result)
 	);
 
-	mux_2 write_back_src(
+	wire [31:0] reg_write_data_temp;
+
+	mux_2 write_back_from_mem (
 		.sel(bus_to_reg),
 		.a(result),
 		.b(bus_read_data),
-		.y(reg_write_data)
+		.y(reg_write_data_temp)
 	);	
+
+	mux_2 write_back_pc (
+		.sel(jump),
+		.a(reg_write_data_temp),
+		.b(pc),
+		.y(reg_write_data)
+	);
 
 	assign bus_write_data = reg_2_data;
 	assign bus_address = alu_result;
