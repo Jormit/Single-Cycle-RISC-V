@@ -10,6 +10,7 @@ module control (
 	output reg alu_src_2,
 	output reg out_sel,
 	output reg branch,
+	output reg jump,
 	output reg [1:0] alu_op
 );
 	always @(*) begin

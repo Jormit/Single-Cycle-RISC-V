@@ -41,9 +41,10 @@
 `define CTL_ALU   1'b0
 `define CTL_IMM   1'b1
 
-// Branch address source
-`define CTL_IMM_PC   1'b0
-`define CTL_IMM      1'b1
+// PC Source
+`define PC_NEXT_INST        2'b00
+`define PC_BRANCH_OFFSET    2'b01
+`define PC_ALU_RESULT       2'b10
 
 // FUNCT3 for Arithmetic Instructions
 `define FUNCT3_ALU_ADD_SUB  3'b000
